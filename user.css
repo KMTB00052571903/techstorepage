@@ -198,6 +198,7 @@ p {
     text-align: left; /* Alinea el texto a la izquierda */
     margin-top: 20px; 
     justify-content: flex-start;
+    left:0px;
 }
 
 .info hr {
@@ -220,4 +221,11 @@ p {
     margin-right: 10px; /* Espacio entre el ícono y el texto */
 }
 
+.sort{
+    display:flex;
+    flex-direction:row;
+}
+.filler{
+    width:450px;
+}
 

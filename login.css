@@ -1,14 +1,14 @@
 
 @font-face { 
     font-family: 'Nippo Variable';
-    src: url('fonts/Nippo-Variable.ttf') format('ttf');
+    src: url('./fonts/Nippo-Variable.ttf') format('ttf');
     font-weight: 1 1000; /* Ajusta según los pesos disponibles */
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Amulya Variable';
-    src: url('fonts/Amulya-Variable.ttf') format('ttf');
+    src: url('./fonts/Amulya-Variable.ttf') format('ttf');
     font-weight: 1 1000; /* Ajusta según los pesos disponibles */
     font-style: normal;
 }
@@ -82,7 +82,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #009cbe;
+    color: white;
 }
 
 .login-button {
@@ -132,7 +132,6 @@ body {
 }
 header {
     background-color: #120526;
-    padding: 1rem;
     display:flex;
     justify-content:center;
 }
