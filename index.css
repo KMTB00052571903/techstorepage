@@ -221,7 +221,7 @@ nav ul li a {
 
 .recently-added {
     position: absolute;
-    top: -20px;
+
     left: 50%;
     transform: translateX(-50%);
     
@@ -288,7 +288,7 @@ background-color:#120526; /* Violeta oscuro */
 
 .bestsellers {
     position: absolute;
-    top: -20px;
+
     left: 50%;
     transform: translateX(-50%);
     
