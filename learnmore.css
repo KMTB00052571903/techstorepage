@@ -143,3 +143,17 @@ nav {
         font-family: "Amulya Variable", sans-serif;
         
     }
+    .sub-button {
+        background-color: #2da9ca;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 50%;
+        margin-bottom: 20px;
+        font-family: 'Amulya Variable', sans-serif;
+        font-weight: bold;
+        
+    }
