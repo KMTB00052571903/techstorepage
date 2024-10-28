@@ -82,7 +82,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: white;
+    color: #009cbe;
 }
 
 .login-button {

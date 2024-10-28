@@ -1,4 +1,3 @@
-
 @font-face { 
     font-family: 'Nippo Variable';
     src: url('fonts/Nippo-Variable.ttf') format('ttf');
@@ -24,7 +23,7 @@
 body {
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     font-family:'Nippo Variable', sans-serif; 
@@ -40,123 +39,9 @@ body {
 
 }
 
-
-
-
-
-.login-container {
-    background-color: #120526; /* Violeta */
-    border: 2px solid white;
-    border-radius: 15px;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    top:70px;
-    
-
-}
-
-.login-container h2 {
-    color: white;
-    margin-bottom: 20px;
-    font-family: 'Nippo Variable', sans-serif ;
-    
-}
-
-.input-container {
-    position: relative;
-    margin-bottom: 10px;
-}
-
-
-
-.input-container2 {
-    position: relative;
-    margin-top: 10px;
-}
-
-
-.input-container3 {
-    position: relative;
-    margin-top: 10px;
-}
-
-.input-container4 {
-    position: relative;
-    margin-top: 10px;
-    
-}
-
-
-.input-container input {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid white;
-    border-radius: 15px;
-    box-sizing: border-box;
-    margin-top: 10px;
-}
-
-.input-container .toggle-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #009cbe;
-}
-
-.signup-button {
-    background-color: #009cbe;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    margin-top: 25px;
-    
-}
-
-.signup-button:hover {
-    background-color: #007ba7;
-}
-
-.social-login {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.social-login i {
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.social-login i:hover {
-    color: #ddd;
-}
-
-.login-container p {
-    color: white;
-    margin: 10px 0;
-}
-
-.login-container a {
-    color: #009cbe;
-    text-decoration: none;
-}
-
-.login-container a:hover {
-    text-decoration: underline;
-}
 header {
-    background-color: #120526;
-
+    
+    padding: 1rem;
     display:flex;
     justify-content:center;
 }
@@ -227,3 +112,86 @@ nav {
         height:100px;
         z-index: 12;
     }
+.spacer2{
+        height:120px;
+        z-index: 12;
+    }
+
+
+    .product-container {
+        background-color: #120526; /* Violeta oscuro */
+        border: 2px solid white;
+        border-radius: 15px;
+        text-align: center;
+        padding: 20px;
+        margin: 20px auto;
+        width: 90%;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        max-height: 100%;
+    }
+    
+    .product-image {
+        display:flex;
+        width: 100%;
+        height: 500px;
+        border-radius: 10px;
+    }
+    
+    .product-name {
+        color: white;
+        font-size: 32px;
+        margin: 10px 0;
+        font-family: "Nippo Variable", sans-serif;
+        font-weight: bold;
+    }
+    
+    .product-price {
+        color: white;
+        font-size: 20px;
+        font-family: "Amulya Variable", sans-serif;
+        
+    }
+    .desc {
+        color: white;
+        font-size: 15px;
+        font-family: "Amulya Variable", sans-serif;
+        font-style: normal;
+        text-align: start;
+        
+    }
+    .sub-button {
+        background-color: #2da9ca;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 50%;
+        margin-bottom: 20px;
+        font-family: 'Amulya Variable', sans-serif;
+        font-weight: bold;
+        
+    }
+
+.product-image{
+    display:flex;
+    justify-content:center;
+    height: 250px;
+    width: 250px;
+    padding:10px;
+}
+.row{
+    display:flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+.product-text{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
