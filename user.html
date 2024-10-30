@@ -27,24 +27,25 @@
 
     <div class="Welcome-user">
         <i class="fas fa-user user-icon"></i>
-        <h1>Welcome, User</h1>
+        <h1 id="welcome-message">Welcome, User</h1>
     </div>
-
     <div class="welcome-container">
         <div class="user-info">
             <p>User info</p>
             <hr>
             <h2>Name</h2>
-            <h3>Name Last Name</h3>
+            <h3 id="user-name">Name Last Name</h3>
+            <input type="text" id="edit-name" placeholder="Edit Name" class="edit-input" style="display: none;">
             <h2>Email</h2>
-            <h3>xxxxxxxx@email.com</h3>  
+            <h3 id="user-email">xxxxxxxx@email.com</h3>
+            <input type="email" id="edit-email" placeholder="Edit Email" class="edit-input" style="display: none;">
+            <button onclick="updateUserInfo()" class="edit-input" style="display: none;">Update Info</button>
+            <button onclick="logout()" id="logout-button" style="display: none;">Logout</button>
         </div>
     </div>
-
     <div class="sort">
         <div class="info">
             <h3><img src="./settingsicon-8.png" alt="Settings Icon" class="icon"> Settings</h3>
-            <div class="settings" style="display: none;">Configura tus preferencias aquí...</div>
             <div class="filler"></div>
             <hr>
             <h3><img src="./wishicon-8.png" alt="Wish List Icon" class="icon"> Wish list</h3>
@@ -57,3 +58,4 @@
     <script src="user.js"></script>
 </body>
 </html>
+

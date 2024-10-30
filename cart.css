@@ -240,7 +240,6 @@ h4{
 .addition{
     background-image: url(./addition.png);
     width: 721px;
-    height:78px;
     background-size:cover; /* Ajusta la imagen para cubrir todo el fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
