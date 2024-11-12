@@ -1,10 +1,19 @@
 let products = []
+
+async function getProducts() {
+    let response = await fetch("https://raw.githubusercontent.com/KMTB00052571903/techstorepage/refs/heads/main/data.json")
+    let data = await response.json()
+    console.log(data)
+    parseDataToProducts(data)
+}
+
 function parseDataToProducts() {
     for(let i = 0; i < data.length; i++) {
         let map = data[i]
         let product = new Product(map["id"], map["title"], map["price"], map["description"], map["image"], map["category"])
         products.push(product)
     }
+    renderAllProducts()
 }
 
 function renderAllProducts() {
@@ -20,5 +29,6 @@ function productSelected(pos) {
     window.location = "./detail.html?name=" + productAtPos.title
 }
 
-parseDataToProducts()
-renderAllProducts()
+
+
+getProducts()
