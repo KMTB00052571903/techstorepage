@@ -99,7 +99,7 @@ nav {
     
     }
     
-.items{
+.products{
 
         margin-top: 30px;
         height:800px;
@@ -133,4 +133,8 @@ h2{
     font-family:'Amulya Variable', sans-serif; 
     color:white;
     
+}
+
+label{
+    color: white;
 }

@@ -25,3 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 console.log('login.js is loaded');  // Si ves este mensaje en la consola del navegador, significa que el archivo se está cargando correctamente.
+
+
+
+
+

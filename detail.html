@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./learnmore.css">
+    <link rel="stylesheet" href="./detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -33,31 +33,31 @@
 
     <div class="spacer"></div>
 
-    <div class="product-container">
-        <h2 class="product-name">Meta Quest</h2>
-        <div class="row">
-            <div class="product-image">
-                <img src="meta-quest.jpg" alt="Meta Quest Product" height="375" width="375">
+
+<div class="product-container">
+    <div class="main-container">
+        <div class="content">
+            <h2 id="title" class="product-name"></h2>
+            <div>
+                <img id="image" class="content-img" src="" alt="" width="375" height="375">
             </div>
+    
+            <div class="info">
 
-            <div class="spacer2"></div>
 
-            <div class="product-text">
-                <p class="product-price">$350 USD</p>
-                <p class="desc"> Experience total immersion with 3D positional audio, hand tracking and easy-to-use
-                    controllers working together to make virtual worlds feel real.
-                    Explore an expanding universe of over 500 titles across gaming, fitness, social/multiplayer and
-                    entertainment, including exclusive releases and totally unique VR experiences. </p>
+                <p class="product-price" id="price"></p>
+
+                <p id="description" class="desc"></p>
+
             </div>
         </div>
-
-
-        <button type="submit" class="sub-button">Add to cart</button>
     </div>
+    <button type="submit" class="sub-button">Add to cart</button>
+</div>
 
-
-
-
+    <script src="./Product.js"></script>
+    <script src="./data.js"></script>
+    <script src="./detail.js"></script>
 </body>
 
 </html>
