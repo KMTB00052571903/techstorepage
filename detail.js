@@ -1,84 +1,62 @@
-<<<<<<< HEAD
-const params = new URLSearchParams(window.location.search)
-const nameFromUrl = params.get("name")
-
-function getProduct() {
-    for(let i = 0; i < data.length; i++) {
-        let map = data[i]
-        if(map["title"] === nameFromUrl) {
-            let product = new Product(map["id"], map["title"], map["price"], map["description"], map["image"], map["category"])
-            return product
-=======
 const params = new URLSearchParams(window.location.search);
 const nameFromUrl = params.get("name");
 
 function getProduct() {
+    // Suponiendo que 'data' es un array global que contiene productos
     for (let i = 0; i < data.length; i++) {
         let map = data[i];
         if (map["title"] === nameFromUrl) {
+            // Creación del producto con la información de 'map'
             let product = new Product(map["id"], map["title"], map["price"], map["description"], map["image"], map["category"]);
             return product;
->>>>>>> ec81262f60a1a8e9c013bd464f695ac93e398693
         }
     }
+    return null; // Si no se encuentra el producto, retorna null
 }
 
 function renderProduct() {
-<<<<<<< HEAD
-    let product = getProduct()
-
-    let h1Title = document.getElementById("title")
-    h1Title.innerHTML = product.title
-
-    let pDescription = document.getElementById("description")
-    pDescription.innerHTML = product.description
-
-    let h2Price = document.getElementById("price") 
-    h2Price.innerHTML = "$ " + product.price
-
-    let image = document.getElementById("image")
-    image.src = product.image
-}
-
-renderProduct()
-=======
+    // Llamamos a getProduct() y verificamos si se devuelve un producto
     let product = getProduct();
 
-    let h1Title = document.getElementById("title");
-    h1Title.innerHTML = product.title;
+    if (product) {
+        let h1Title = document.getElementById("title");
+        h1Title.innerHTML = product.title;
 
-    let pDescription = document.getElementById("description");
-    pDescription.innerHTML = product.description;
+        let pDescription = document.getElementById("description");
+        pDescription.innerHTML = product.description;
 
-    let h2Price = document.getElementById("price");
-    h2Price.innerHTML = "$ " + product.price;
+        let h2Price = document.getElementById("price");
+        h2Price.innerHTML = "$ " + product.price;
 
-    let image = document.getElementById("image");
-    image.src = product.image[0];
+        let image = document.getElementById("image");
+        image.src = product.image; // Asegúrate de que product.image sea una URL válida
+    } else {
+        console.error("Producto no encontrado.");
+    }
 
-    // Add event listener to the "Add to cart" button
+    // Agregar el evento al botón "Añadir al carrito"
     const addToCartButton = document.querySelector(".sub-button");
     addToCartButton.addEventListener("click", () => addToCart(product));
 }
 
 function addToCart(product) {
-    // Retrieve current cart from localStorage or initialize a new array if it doesn't exist
+    // Recuperar el carrito actual de localStorage o inicializar uno vacío
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Check if the product already exists in the cart
+    // Verificar si el producto ya está en el carrito
     const existingProduct = cart.find(item => item.id === product.id);
     if (existingProduct) {
-        existingProduct.quantity += 1; // Increment quantity if the product already exists
+        existingProduct.quantity += 1; // Incrementar cantidad si el producto ya existe
     } else {
-        cart.push({ ...product, quantity: 1 }); // Add product with initial quantity of 1
+        cart.push({ ...product, quantity: 1 }); // Agregar el producto con cantidad 1
     }
 
-    // Save the updated cart back to localStorage
+    // Guardar el carrito actualizado en localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    // Redirect to cart.html
+    // Redirigir a la página del carrito
     window.location.href = "cart.html";
 }
 
+// Llamar a renderProduct() para mostrar el producto
 renderProduct();
->>>>>>> ec81262f60a1a8e9c013bd464f695ac93e398693

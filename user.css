@@ -88,7 +88,15 @@ nav {
         margin-top: 550px;
     }
 
+#logoutButton {
+    background-color: rgb(47, 1, 121);
+    color:white;
+    font-family: 'Amulya Variable', sans-serif;
+    font-weight: normal;
+    border-radius: 12px;
 
+
+}
 
 
 

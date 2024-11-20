@@ -1,15 +1,16 @@
-// Simulación de los datos de usuario (podrían venir de una base de datos en un entorno real)
-const userData = {
-    name: "Rosa M",
-    email: "rosam@mail.com"
-};
-
-// Función para cargar los datos del usuario y mostrar el nombre en la bienvenida
+// Función para cargar los datos del usuario desde localStorage
 function loadUserData() {
-    // Cambia el nombre y el correo electrónico en la página
-    document.querySelector(".Welcome-user h1").textContent = `Welcome, ${userData.name.split(" ")[0]}`;
-    document.getElementById('user-name').textContent = userData.name;
-    document.getElementById('user-email').textContent = userData.email;
+    const storedUserData = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    // Si hay un usuario logueado en localStorage, mostrar sus datos
+    if (storedUserData) {
+        document.querySelector(".Welcome-user h1").textContent = `Welcome, ${storedUserData.name.split(" ")[0]}`;
+        document.getElementById('user-name').textContent = storedUserData.name;
+        document.getElementById('user-email').textContent = storedUserData.email;
+    } else {
+        // Si no hay datos, redirigir a la página de login
+        window.location.href = "login.html";
+    }
 }
 
 // Función para actualizar los datos del usuario
@@ -17,8 +18,14 @@ function updateUserInfo() {
     const newName = document.getElementById('edit-name').value;
     const newEmail = document.getElementById('edit-email').value;
 
-    if (newName) userData.name = newName;
-    if (newEmail) userData.email = newEmail;
+    let updatedUserData = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    // Actualizar solo si hay un valor nuevo ingresado
+    if (newName) updatedUserData.name = newName;
+    if (newEmail) updatedUserData.email = newEmail;
+
+    // Guardar los cambios en localStorage
+    localStorage.setItem("loggedInUser", JSON.stringify(updatedUserData));
 
     // Recargar los datos del usuario para reflejar los cambios
     loadUserData();
@@ -43,10 +50,23 @@ function toggleSection(section) {
     }
 }
 
-// Eventos de clic para mostrar/ocultar las secciones de Settings y Wish List
+// Función para cerrar sesión
+function logout() {
+    // Eliminar los datos del usuario de localStorage
+    localStorage.removeItem("loggedInUser");
+    // Redirigir a la página de login
+    window.location.href = "login.html";
+}
+
+// Cargar los datos del usuario y configurar el botón de logout
 document.addEventListener("DOMContentLoaded", () => {
     loadUserData();
+
     // Agregar eventos a cada título para alternar su visualización
     document.querySelector(".info h3:nth-of-type(1)").addEventListener("click", () => toggleSection("settings"));
     document.querySelector(".info h3:nth-of-type(2)").addEventListener("click", () => toggleSection("wishlist"));
+
+    // Configurar el botón de logout si existe en user.html
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) logoutButton.addEventListener("click", logout);
 });

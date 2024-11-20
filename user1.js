@@ -13,7 +13,7 @@ function loadUserData() {
     }
 }
 
-// Función para actualizar los datos del usuario en localStorage
+// Función para actualizar los datos del usuario
 function updateUserInfo() {
     const newName = document.getElementById('edit-name').value;
     const newEmail = document.getElementById('edit-email').value;
@@ -34,6 +34,22 @@ function updateUserInfo() {
     document.querySelectorAll('.edit-input').forEach(input => input.style.display = 'none');
 }
 
+// Función para alternar la visualización de las secciones de Configuración y Lista de Deseos
+function toggleSection(section) {
+    const sectionContent = document.querySelector(`.${section}`);
+    if (section === 'settings') {
+        document.querySelectorAll('.edit-input').forEach(input => {
+            input.style.display = input.style.display === 'none' ? 'block' : 'none';
+        });
+    } else {
+        if (sectionContent.style.display === "none" || !sectionContent.style.display) {
+            sectionContent.style.display = "block";
+        } else {
+            sectionContent.style.display = "none";
+        }
+    }
+}
+
 // Función para cerrar sesión
 function logout() {
     // Eliminar los datos del usuario de localStorage
@@ -42,9 +58,14 @@ function logout() {
     window.location.href = "login.html";
 }
 
-// Eventos para cargar datos y logout
+// Cargar los datos del usuario y configurar el botón de logout
 document.addEventListener("DOMContentLoaded", () => {
     loadUserData();
+
+    // Agregar eventos a cada título para alternar su visualización
+    document.querySelector(".info h3:nth-of-type(1)").addEventListener("click", () => toggleSection("settings"));
+    document.querySelector(".info h3:nth-of-type(2)").addEventListener("click", () => toggleSection("wishlist"));
+
     // Configurar el botón de logout si existe en user.html
     const logoutButton = document.getElementById("logoutButton");
     if (logoutButton) logoutButton.addEventListener("click", logout);
