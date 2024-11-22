@@ -70,3 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoutButton = document.getElementById("logoutButton");
     if (logoutButton) logoutButton.addEventListener("click", logout);
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!loggedInUser) {
+        alert("Debes iniciar sesión para acceder a esta página.");
+        window.location.href = "login.html"; // Redirige al login si no hay sesión activa
+    } else {
+        console.log(`Sesión activa: Bienvenido, ${loggedInUser.name}`);
+    }
+});

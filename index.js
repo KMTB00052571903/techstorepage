@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // index.js
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-=======
+
 // Lista de productos para la sección "Recently added"
 const recentlyAddedProducts = [
     { image: 'https://github.com/rmcarvajal/techpics/raw/main/ps5.png', name: 'Playstation 5', price: 'USD $450' },
@@ -82,4 +82,3 @@ document.querySelector('.sellers-container .triangle-right img').addEventListene
 // Inicializar con el primer producto de cada sección
 updateRecentlyAddedProduct();
 updateBestSellersProduct();
->>>>>>> ec81262f60a1a8e9c013bd464f695ac93e398693

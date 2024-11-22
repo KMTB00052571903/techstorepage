@@ -28,6 +28,18 @@ body {
 }
 
 
+
+
+#logoutButton {
+    background-color: rgb(47, 1, 121);
+    color:white;
+    font-family: 'Amulya Variable', sans-serif;
+    font-weight: normal;
+    border-radius: 12px;
+
+
+}
+
 header {
     background-color: #120526;
     padding: 1rem;

@@ -85,7 +85,7 @@ nav {
         text-decoration: none;
     
     }
-.item{
+.cart-item{
     height:200px;
     top:50px;
 
@@ -264,4 +264,14 @@ h4{
     font-family: 'Amulya Variable', sans-serif;
     font-weight: bold;
     
+}
+
+#logoutButton {
+    background-color: rgb(47, 1, 121);
+    color:white;
+    font-family: 'Amulya Variable', sans-serif;
+    font-weight: normal;
+    border-radius: 12px;
+
+
 }

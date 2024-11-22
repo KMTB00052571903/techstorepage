@@ -39,16 +39,21 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Guardar los datos del usuario en localStorage
-        const newUser = {
-            name: nameInput.value,
-            email: emailInput.value,
-            password: passwordInput.value // Aunque en un proyecto real, nunca se guardan contraseñas en texto plano
-        };
+        // Obtener la lista de usuarios registrados o crear un objeto vacío si no existe
+        let users = JSON.parse(localStorage.getItem("users")) || {};
 
-        // Obtener la lista de usuarios registrados
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        users.push(newUser); // Agregar el nuevo usuario
+        // Verificar si el correo ya está registrado
+        if (users[emailInput.value]) {
+            alert("Este correo ya está registrado. Intenta con otro.");
+            return;
+        }
+
+        // Guardar los datos del nuevo usuario
+        const newUser = {
+            name: nameInput.value.trim(),
+            password: passwordInput.value.trim()
+        };
+        users[emailInput.value.trim()] = newUser; // Almacenar el usuario con el correo como clave
         localStorage.setItem("users", JSON.stringify(users)); // Guardar en localStorage
 
         alert("Account created successfully!");

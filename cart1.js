@@ -191,4 +191,42 @@ function saveCartToLocalStorage() {
 // Llamada inicial para mostrar el carrito
 renderCart();
 
+function loadCart() {
+  // Verificar si hay un usuario logueado
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!loggedInUser) {
+      alert("Debes iniciar sesión para ver tu carrito.");
+      window.location.href = "login.html";
+      return;
+  }
 
+  // Recuperar el carrito del usuario logueado
+  let userCartKey = `cart_${loggedInUser.email}`;
+  let cart = JSON.parse(localStorage.getItem(userCartKey)) || [];
+
+  // Renderizar los productos en el carrito
+  const cartContainer = document.getElementById("cartContainer");
+  cartContainer.innerHTML = ""; // Limpiar el contenido previo
+
+  if (cart.length === 0) {
+      cartContainer.innerHTML = "<p>Tu carrito está vacío.</p>";
+  } else {
+      cart.forEach(product => {
+          const productElement = document.createElement("div");
+          productElement.innerHTML = `
+              <div>
+                  <img src="${product.image}" alt="${product.title}" />
+                  <h3>${product.title}</h3>
+                  <p>Precio: $${product.price}</p>
+                  <p>Cantidad: ${product.quantity}</p>
+              </div>
+          `;
+          cartContainer.appendChild(productElement);
+      });
+  }
+}
+
+loadCart();
+
+const cart = getCart();
+console.log("Carrito actual:", cart);

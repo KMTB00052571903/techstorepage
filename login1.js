@@ -1,34 +1,72 @@
-// Simulación de una base de datos de usuarios
-const usersDB = {
-    "mariac@gmail.com": "taqueso12" // Ejemplo de un usuario registrado
-};
+console.log("login.js is loaded");
 
 // Función de login
 function login() {
     const email = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Verificar si el usuario está registrado en usersDB
-    if (email in usersDB) {
-        if (usersDB[email] === password) {
-            // Guardar datos del usuario en localStorage al iniciar sesión
-            const userData = { name: "Rosa M", email: email };
-            localStorage.setItem("loggedInUser", JSON.stringify(userData));
+    // Validar los valores del formulario
+    if (email && password) {
+        // Verificar si el usuario está registrado en localStorage
+        const users = JSON.parse(localStorage.getItem("users")) || {}; // Recuperar todos los usuarios
 
-            // Redirigir a la página del usuario
-            window.location.href = "user.html";
+        if (users[email] && users[email].password === password) {
+            // Guardar datos del usuario logueado en localStorage
+            const loggedInUser = {
+                name: users[email].name,
+                email: email,
+            };
+            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+
+            // Crear un carrito vacío si no existe para este usuario
+            let userCartKey = `cart_${email}`;
+            if (!localStorage.getItem(userCartKey)) {
+                localStorage.setItem(userCartKey, JSON.stringify([]));
+            }
+
+            // Redirigir a la página de catálogo
+            alert("Inicio de sesión exitoso.");
+            window.location.href = "catalog.html";
         } else {
-            alert("Contraseña incorrecta. Inténtalo de nuevo.");
+            alert("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
         }
     } else {
-        if (confirm("Esta cuenta no existe. ¿Deseas crear una cuenta nueva?")) {
-            window.location.href = "signup.html";
-        }
+        alert("Por favor, complete todos los campos.");
     }
 }
 
-// Añadir evento de submit al formulario de login para ejecutar la función de login
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+// Mostrar/Ocultar contraseña
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector(".toggle-password").addEventListener("click", function () {
+        const passwordInput = this.previousElementSibling; // Seleccionar el campo de entrada de la contraseña
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            this.classList.remove("fa-eye");
+            this.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            this.classList.remove("fa-eye-slash");
+            this.classList.add("fa-eye");
+        }
+    });
+
+    // Verificar si hay una sesión activa al cargar la página
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+        alert(`Bienvenido nuevamente, ${loggedInUser.name}`);
+        window.location.href = "catalog.html";
+    }
+});
+
+// Añadir evento al formulario de login
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evitar envío del formulario
     login();
 });
+
+// Función de cerrar sesión (puede ser llamada desde un botón en otras páginas)
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    alert("Has cerrado sesión.");
+    window.location.href = "login.html";
+}
