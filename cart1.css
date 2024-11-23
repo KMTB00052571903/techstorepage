@@ -1,3 +1,14 @@
+#logoutButton {
+    background-color: rgb(47, 1, 121);
+    color:white;
+    font-family: 'Amulya Variable', sans-serif;
+    font-weight: normal;
+    border-radius: 12px;
+
+
+}
+
+
 @font-face { 
     font-family: 'Nippo Variable';
     src: url('./fonts/Nippo-Variable.ttf') format('ttf');
@@ -85,33 +96,22 @@ nav {
         text-decoration: none;
     
     }
-    .cart-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
-        border: 2px solid white; /* Contorno blanco */
-        border-radius: 20px;
-        width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
-        box-sizing: border-box; /* Incluye el borde en el ancho total */
-        overflow: hidden; /* Asegura que el contenido no se desborde */
-        background-color: #120526;
-        padding: 1rem; /* Añade un poco de espacio interno */
-    }
-    
-    .x-button {
-        margin-left: auto; /* Asegura que este elemento esté completamente a la derecha */
-        height: 210px; /* Asegura que tenga el mismo alto del contenedor */
-        width: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #2da9ca;
-        border-left: 2px solid white; /* Contorno blanco */
-        font-family: 'Amulya Variable', sans-serif;
-        color: white;
-        font-size: 65px;
-    }
-    
+.item{
+    height:200px;
+    top:50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid white; /* Contorno blanco */
+    border-radius: 10px;
+
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    box-sizing: border-box; /* Incluye el borde en el ancho total */
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+    background-color: #120526;
+}
+
 body{
     display: flex;
     flex-direction:column;
@@ -152,7 +152,19 @@ body{
     justify-content:space-around;
     align-items:flex-start;
 }
+.x-button{
+    height:100%;
+    width: 150px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background-color: #2da9ca;
+    border-left: 2px solid white; /* Contorno blanco */
+    font-family:'Amulya Variable', sans-serif; 
+    color:white;
+    font-size:65px;
 
+}
 .counter{
     height:50px;
     width:150px;
@@ -239,6 +251,7 @@ h4{
 .addition{
     background-image: url(./addition.png);
     width: 721px;
+    height:78px;
     background-size:cover; /* Ajusta la imagen para cubrir todo el fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
@@ -263,14 +276,4 @@ h4{
     font-family: 'Amulya Variable', sans-serif;
     font-weight: bold;
     
-}
-
-#logoutButton {
-    background-color: rgb(47, 1, 121);
-    color:white;
-    font-family: 'Amulya Variable', sans-serif;
-    font-weight: normal;
-    border-radius: 12px;
-
-
 }

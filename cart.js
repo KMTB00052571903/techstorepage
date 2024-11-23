@@ -1,92 +1,91 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const cartContainer = document.querySelector('.addition');
-    const totalElement = document.querySelector('.checkout h4');
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 
+// Obtener los elementos del carrito desde localStorage o inicializar como vacío
+let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const cartKey = `cart_${loggedInUser.email}`;
-    const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+// Obtener referencia al contenedor del carrito y al total
+const cartContainer = document.querySelector(".addition");
+const totalContainer = document.querySelector(".checkout h4");
 
-    // Función para renderizar los productos del carrito
-    const renderCart = () => {
-        cartContainer.innerHTML = '';
+// Función para obtener un producto por ID
+function getProductById(id) {
+    return data.find(product => product.id === id);
+}
 
-        if (cart.length === 0) {
-            cartContainer.innerHTML = '<p>El carrito está vacío.</p>';
-            updateTotal();
-            return;
-        }
+// Función para actualizar el total del carrito
+function updateTotal() {
+    const total = cartItems.reduce((sum, item) => {
+        const product = getProductById(item.id);
+        return sum + product.price * item.quantity;
+    }, 0);
+    totalContainer.textContent = `TOTAL: $${total.toFixed(2)}`;
+}
 
-        cart.forEach((item, index) => {
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-item');
-            cartItem.innerHTML = `
-                <div class="cart-item-details">
-                    <p>${item.title}</p>
-                    <p>Precio: $${item.price}</p>
-                    <p>Cantidad: ${item.quantity}</p>
+// Función para renderizar los elementos del carrito
+function renderCart() {
+    cartContainer.innerHTML = ""; // Limpiar el contenido existente para evitar duplicados
+
+    cartItems.forEach(item => {
+        const product = getProductById(item.id);
+        
+        const itemElement = document.createElement("div");
+        itemElement.classList.add("item");
+        itemElement.innerHTML = `
+            <div class="product">
+                <div class="product-image">
+                    <img src="${product.image[0]}" alt="${product.title}" width="150">
                 </div>
-                <div class="cart-item-actions">
-                    <button class="decrement" data-index="${index}">-</button>
-                    <button class="increment" data-index="${index}">+</button>
-                    <button class="remove" data-index="${index}">Eliminar</button>
+                <div class="product-text">
+                    <h2>${product.title}</h2>
+                    <h3>USD $${product.price.toFixed(2)}</h3>
+                    <div class="fit">
+                        <div class="counter">
+                            <div class="Lside" onclick="decreaseQuantity(${item.id})">-</div>
+                            <div class="Mside">${item.quantity}</div>
+                            <div class="Rside" onclick="increaseQuantity(${item.id})">+</div>
+                        </div>
+                        <p>ID: ${item.id}</p>
+                    </div>
                 </div>
-            `;
-            cartContainer.appendChild(cartItem);
-        });
+            </div>
+            <div class="x-button" onclick="removeFromCart(${item.id})">X</div>
+        `;
+        cartContainer.appendChild(itemElement);
+    });
+    updateTotal();
+    saveCartToLocalStorage();
+}
 
-        addEventListeners();
-        updateTotal();
-    };
-
-    // Función para actualizar el total
-    const updateTotal = () => {
-        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-        totalElement.textContent = `TOTAL: $${total.toFixed(2)}`;
-    };
-
-    // Función para manejar eventos en botones
-    const addEventListeners = () => {
-        const decrementButtons = document.querySelectorAll('.decrement');
-        const incrementButtons = document.querySelectorAll('.increment');
-        const removeButtons = document.querySelectorAll('.remove');
-
-        decrementButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = e.target.dataset.index;
-                if (cart[index].quantity > 1) {
-                    cart[index].quantity--;
-                } else {
-                    cart.splice(index, 1);
-                }
-                updateCart();
-            });
-        });
-
-        incrementButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = e.target.dataset.index;
-                cart[index].quantity++;
-                updateCart();
-            });
-        });
-
-        removeButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = e.target.dataset.index;
-                cart.splice(index, 1);
-                updateCart();
-            });
-        });
-    };
-
-    // Función para actualizar el carrito en localStorage y re-renderizar
-    const updateCart = () => {
-        localStorage.setItem(cartKey, JSON.stringify(cart));
+// Función para incrementar la cantidad de un producto en el carrito
+function increaseQuantity(id) {
+    const item = cartItems.find(item => item.id === id);
+    if (item) {
+        item.quantity += 1;
         renderCart();
-    };
+    }
+}
 
-    // Inicializa el renderizado del carrito
+// Función para disminuir la cantidad de un producto en el carrito
+function decreaseQuantity(id) {
+    const item = cartItems.find(item => item.id === id);
+    if (item && item.quantity > 1) {
+        item.quantity -= 1;
+    } else {
+        removeFromCart(id);
+    }
     renderCart();
-});
+}
+
+// Función para eliminar un producto del carrito
+function removeFromCart(id) {
+    cartItems = cartItems.filter(item => item.id !== id);
+    renderCart();
+}
+
+// Función para guardar el carrito en localStorage
+function saveCartToLocalStorage() {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+}
+
+// Llamada inicial para mostrar el carrito
+renderCart();
