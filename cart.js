@@ -1,5 +1,3 @@
-
-
 // Obtener los elementos del carrito desde localStorage o inicializar como vacío
 let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -11,6 +9,12 @@ const totalContainer = document.querySelector(".checkout h4");
 function getProductById(id) {
     return data.find(product => product.id === id);
 }
+
+
+function addToCart(product) {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+}
+    //
 
 // Función para actualizar el total del carrito
 function updateTotal() {
@@ -29,7 +33,7 @@ function renderCart() {
         const product = getProductById(item.id);
         
         const itemElement = document.createElement("div");
-        itemElement.classList.add("item");
+        itemElement.classList.add("cart-item");  // Cambiado a "cart-item" para coincidir con tu CSS
         itemElement.innerHTML = `
             <div class="product">
                 <div class="product-image">
